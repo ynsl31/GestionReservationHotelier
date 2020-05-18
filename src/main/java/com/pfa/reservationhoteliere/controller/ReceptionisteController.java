@@ -16,7 +16,7 @@ import com.pfa.reservationhoteliere.entity.User;
 import com.pfa.reservationhoteliere.repository.IReceptionisteRepository;
 
 @RestController
-@RequestMapping("Receptionists")
+@RequestMapping("receptionists")
 public class ReceptionisteController {
 	@Autowired
 	private IReceptionisteRepository  ReceptionistRepository;

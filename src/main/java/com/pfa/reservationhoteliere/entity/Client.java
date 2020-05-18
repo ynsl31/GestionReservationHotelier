@@ -3,6 +3,7 @@ package com.pfa.reservationhoteliere.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +13,7 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+@DiscriminatorValue("client")
 public class Client  extends User implements Serializable  {
 
 	private String reference;// CIN ou N passeport ...

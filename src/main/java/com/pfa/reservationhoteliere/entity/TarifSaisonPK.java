@@ -16,6 +16,31 @@ public class TarifSaisonPK implements Serializable {
 		super();
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + saison;
+		result = prime * result + tarif;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		TarifSaisonPK other = (TarifSaisonPK) obj;
+		if (saison != other.saison)
+			return false;
+		if (tarif != other.tarif)
+			return false;
+		return true;
+	}
+
 	public TarifSaisonPK(int tarif, int saison) {
 		super();
 		this.tarif = tarif;

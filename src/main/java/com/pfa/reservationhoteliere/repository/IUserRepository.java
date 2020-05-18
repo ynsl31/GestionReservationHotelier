@@ -11,4 +11,5 @@ import com.pfa.reservationhoteliere.entity.User;
 public interface IUserRepository extends JpaRepository<User, Integer> {
 	User findById(int id);
 	List<User> findAll();
+	User findByLoginAndPwd(String login,String pwd);
 }

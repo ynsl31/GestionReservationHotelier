@@ -2,6 +2,9 @@ package com.pfa.reservationhoteliere.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,8 +13,14 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
 @Entity
-@Inheritance(strategy=InheritanceType.JOINED)
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="profile")
+@DiscriminatorValue("admin")
 public class User implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id ;
@@ -22,16 +31,14 @@ public class User implements Serializable {
 	private String mail ;
 	private String adresse ;
 	private String tel  ;
+	@Column(name="profile", insertable=false, updatable=false)
+	private String profile  ;
 	
-	public User(String login, String pwd, String nom, String prenom, String mail, String adresse, String tel) {
-		super();
-		this.login = login;
-		this.pwd = pwd;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.mail = mail;
-		this.adresse = adresse;
-		this.tel = tel;
+	public String getProfile() {
+		return profile;
+	}
+	public void setProfile(String profile) {
+		this.profile = profile;
 	}
 	public User() {
 		super();

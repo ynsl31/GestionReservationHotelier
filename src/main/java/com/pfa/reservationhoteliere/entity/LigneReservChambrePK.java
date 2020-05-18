@@ -38,4 +38,29 @@ public class LigneReservChambrePK implements Serializable{
 		this.reservation = reservation;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + chambre;
+		result = prime * result + reservation;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		LigneReservChambrePK other = (LigneReservChambrePK) obj;
+		if (chambre != other.chambre)
+			return false;
+		if (reservation != other.reservation)
+			return false;
+		return true;
+	}
+
 }
