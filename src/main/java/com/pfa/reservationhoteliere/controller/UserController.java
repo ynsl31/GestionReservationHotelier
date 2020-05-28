@@ -19,7 +19,7 @@ import com.pfa.reservationhoteliere.repository.IUserRepository;
 
 @RestController
 @RequestMapping("users")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:4200")  
 public class UserController {
 	@Autowired
 	private IUserRepository  userRepository;

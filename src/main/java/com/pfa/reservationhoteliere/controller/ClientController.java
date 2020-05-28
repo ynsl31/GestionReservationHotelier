@@ -17,7 +17,7 @@ import com.pfa.reservationhoteliere.repository.IClientRepository;
 
 @RestController
 @RequestMapping("clients")
-@CrossOrigin("")
+@CrossOrigin(origins = "http://localhost:4200")  
 public class ClientController {
 	@Autowired
 	private IClientRepository clientRepository;

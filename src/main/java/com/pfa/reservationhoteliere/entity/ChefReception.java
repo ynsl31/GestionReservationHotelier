@@ -7,4 +7,9 @@ import javax.persistence.Entity;
 @DiscriminatorValue("chefreception")
 public class ChefReception extends User{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 }
