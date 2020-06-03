@@ -1,5 +1,6 @@
 package com.pfa.reservationhoteliere.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -10,10 +11,10 @@ public class TarifSaison {
 	@EmbeddedId
 	private TarifSaisonPK tarifSaisonPK;
 	private float prixFinal;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name="tarif", referencedColumnName="id", insertable= false, updatable = false)
 	private Tarif tarif;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name="saison", referencedColumnName="id", insertable= false, updatable = false)
 	private Saison saison;
 

@@ -1,32 +1,41 @@
 package com.pfa.reservationhoteliere.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-public class Etage {
+public class Etage implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	public Etage(int id, int num) {
+		this.id = id;
+		this.num = num;
+	}
+
+
 	private int num;
-	private int nbChambre;
-	@OneToMany(mappedBy = "etage")
+	@OneToMany(mappedBy = "etage", cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<Chambre> chambres;
 
 	public Etage() {
 		super();
 	}
 
-	public Etage(int num, int nbChambre) {
-		super();
-		this.num = num;
-		this.nbChambre = nbChambre;
-	}
 
 	public int getId() {
 		return id;
@@ -44,13 +53,7 @@ public class Etage {
 		this.num = num;
 	}
 
-	public int getNbChambre() {
-		return nbChambre;
-	}
 
-	public void setNbChambre(int nbChambre) {
-		this.nbChambre = nbChambre;
-	}
 
 	public List<Chambre> getChambres() {
 		return chambres;
@@ -60,9 +63,12 @@ public class Etage {
 		this.chambres = chambres;
 	}
 
+
 	@Override
 	public String toString() {
-		return "Etage [id=" + id + ", num=" + num + ", nbChambre=" + nbChambre + ", chambres=" + chambres + "]";
+		return "Etage [id=" + id + ", num=" + num + ", chambres=" + chambres + "]";
 	}
+
+	
 
 }

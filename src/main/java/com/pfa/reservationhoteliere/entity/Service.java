@@ -2,6 +2,7 @@ package com.pfa.reservationhoteliere.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,9 +17,9 @@ public class Service implements Serializable {
 	private String reference;
 	private String description;
 	private String libelle;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE)
 	private Reservation reservation;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE)
 	private Tarif tarif;
 
 	public Service() {

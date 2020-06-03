@@ -20,7 +20,6 @@ import com.pfa.reservationhoteliere.repository.ITarifRepository;
 public class TarifController {
 	@Autowired
 	private ITarifRepository tarifRepository;
-
 	@GetMapping("/all")
 	public List<Tarif> findAll() {
 		return tarifRepository.findAll();

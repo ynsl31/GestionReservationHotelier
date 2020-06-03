@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +15,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Reservation implements Serializable {
@@ -25,12 +27,15 @@ public class Reservation implements Serializable {
 	private boolean etat;
 	@Temporal(TemporalType.DATE)
 	private Date dateReservation;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JsonIgnoreProperties({"reservations"} )
 	private Regime regime;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JsonIgnoreProperties({"reservations"} )
 	@JsonIgnore
 	private Facture facture;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JsonIgnoreProperties({"reservations"} )
 	private Client client;
 	@OneToMany(mappedBy = "reservation")
 	private List<Service> services;

@@ -1,7 +1,9 @@
 package com.pfa.reservationhoteliere.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -10,8 +12,12 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import net.minidev.json.annotate.JsonIgnore;
+
 @Entity
-public class Chambre {
+public class Chambre implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -26,9 +32,11 @@ public class Chambre {
 	private String superficie;
 	private String vue;
 	private String image;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JsonIgnoreProperties({"chambres"} )
 	private Etage etage;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JsonIgnoreProperties({"chambres"} )
 	private CategorieChambre categorieChambre;
 	@OneToMany(mappedBy = "chambre", fetch = FetchType.EAGER)
 	private List<LigneResChambre> ligneResChambres;
@@ -36,26 +44,6 @@ public class Chambre {
 	public Chambre() {
 		super();
 	}
-
-	public Chambre(String refrence, int nbLit, boolean etat, boolean telephone, boolean wifi, boolean television,
-			boolean douche, boolean terrasse, String superficie, String vue, String image, Etage etage,
-			CategorieChambre categorieChambre) {
-		super();
-		this.refrence = refrence;
-		this.nbLit = nbLit;
-		this.etat = etat;
-		this.telephone = telephone;
-		this.wifi = wifi;
-		this.television = television;
-		this.douche = douche;
-		this.terrasse = terrasse;
-		this.superficie = superficie;
-		this.vue = vue;
-		this.image = image;
-		this.etage = etage;
-		this.categorieChambre = categorieChambre;
-	}
-
 	public int getId() {
 		return id;
 	}

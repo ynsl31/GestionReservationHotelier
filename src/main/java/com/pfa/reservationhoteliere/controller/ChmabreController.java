@@ -20,7 +20,7 @@ import com.pfa.reservationhoteliere.repository.IChambreRepository;
 @CrossOrigin(origins = "http://localhost:4200")  
 public class ChmabreController {
 	@Autowired
-	private IChambreRepository chambreRepository;
+		private IChambreRepository chambreRepository;
 
 	@GetMapping("/find/{id}")
 	public Chambre findById(@PathVariable int id) {

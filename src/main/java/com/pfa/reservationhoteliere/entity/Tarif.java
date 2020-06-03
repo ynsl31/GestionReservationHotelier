@@ -8,6 +8,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import net.minidev.json.annotate.JsonIgnore;
+
 @Entity
 public class Tarif {
 	@Id
@@ -21,8 +25,10 @@ public class Tarif {
 	@OneToMany(mappedBy = "tarif")
 	private List<CategorieChambre> categories;
 	@OneToMany(mappedBy = "tarif")
+	@JsonIgnore
 	private List<Salle> salles;
 	@OneToMany(mappedBy = "tarif")
+	@JsonIgnore
 	private List<TarifSaison> tarifSaisons;
 
 	public Tarif() {

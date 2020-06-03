@@ -2,12 +2,17 @@ package com.pfa.reservationhoteliere.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import net.minidev.json.annotate.JsonIgnore;
 
 @Entity
 public class CategorieChambre {
@@ -16,11 +21,11 @@ public class CategorieChambre {
 	private int id;
 	private String reference;
 	private String libelle;
-	private String description;
-	private String vue;
+	private String description; 
 	@OneToMany(mappedBy = "categorieChambre")
 	private List<Chambre> chambres;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JsonIgnoreProperties({"categories"} )
 	private Tarif tarif;
 
 	public CategorieChambre() {
@@ -32,7 +37,7 @@ public class CategorieChambre {
 		this.reference = reference;
 		this.libelle = libelle;
 		this.description = description;
-		this.vue = vue;
+		
 		this.tarif = tarif;
 	}
 
@@ -68,13 +73,6 @@ public class CategorieChambre {
 		this.description = description;
 	}
 
-	public String getVue() {
-		return vue;
-	}
-
-	public void setVue(String vue) {
-		this.vue = vue;
-	}
 
 	public List<Chambre> getChambres() {
 		return chambres;
@@ -95,7 +93,9 @@ public class CategorieChambre {
 	@Override
 	public String toString() {
 		return "CategorieChambre [id=" + id + ", reference=" + reference + ", libelle=" + libelle + ", description="
-				+ description + ", vue=" + vue + ", chambres=" + chambres + ", tarif=" + tarif + "]";
+				+ description + ", chambres=" + chambres + ", tarif=" + tarif + "]";
 	}
+
+
 
 }
