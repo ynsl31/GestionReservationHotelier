@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pfa.reservationhoteliere.entity.Service;
 import com.pfa.reservationhoteliere.entity.Tarif;
 import com.pfa.reservationhoteliere.repository.ITarifRepository;
 @RestController
@@ -28,7 +29,11 @@ public class TarifController {
 	public void save(@RequestBody  Tarif tarif) {
 		tarifRepository.save(tarif);
 	}
-
+	@GetMapping("/find/{id}")
+	public Tarif findById(@PathVariable int id) {
+		return tarifRepository.findById(id);
+	}
+	
 	@DeleteMapping("/delete/{id}")
 	public void delete(@PathVariable String id) {
 		System.out.println("id = "+id);

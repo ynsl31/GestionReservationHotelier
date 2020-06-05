@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pfa.reservationhoteliere.entity.CategorieChambre;
 import com.pfa.reservationhoteliere.entity.Service;
 import com.pfa.reservationhoteliere.repository.IServiceRepository;
 @RestController
@@ -24,6 +25,10 @@ public class ServiceController {
 	@PostMapping("/save")
 	public void save(@RequestBody Service service) {
 		serviceRepository.save(service);
+	}
+	@GetMapping("/find/{id}")
+	public Service findById(@PathVariable int id) {
+		return serviceRepository.findById(id);
 	}
 	
 	@GetMapping("/all")

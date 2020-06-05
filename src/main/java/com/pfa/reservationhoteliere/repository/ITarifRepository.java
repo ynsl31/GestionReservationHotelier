@@ -6,4 +6,5 @@ import com.pfa.reservationhoteliere.entity.Tarif;
 
 public interface ITarifRepository extends JpaRepository<Tarif, Integer>{
 	Tarif findById(int id);
+
 }

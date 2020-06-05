@@ -3,6 +3,7 @@ package com.pfa.reservationhoteliere.entity;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,17 +13,24 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.lang.Nullable;
+
 @Entity
 public class Saison {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	private String saison;
 	private String reference;
 	@Temporal(TemporalType.DATE)
 	private Date dateDebut;
 	@Temporal(TemporalType.DATE)
 	private Date dateFin;
+	@org.assertj.core.annotations.Nullable
+	@Column(nullable = true) 
 	private float reduction;
+	@org.assertj.core.annotations.Nullable
+	@Column(nullable = true) 
 	private float augmentation;
 	@OneToMany(mappedBy = "saison", fetch = FetchType.EAGER)
 	private List<TarifSaison> tarifSaisons;
@@ -31,14 +39,19 @@ public class Saison {
 		super();
 	}
 
-	public Saison(String reference, Date dateDebut, Date dateFin, float reduction, float augmentation) {
-		super();
-		this.reference = reference;
-		this.dateDebut = dateDebut;
-		this.dateFin = dateFin;
-		this.reduction = reduction;
-		this.augmentation = augmentation;
+
+
+	public String getSaison() {
+		return saison;
 	}
+
+
+
+	public void setSaison(String saison) {
+		this.saison = saison;
+	}
+
+
 
 	public int getId() {
 		return id;

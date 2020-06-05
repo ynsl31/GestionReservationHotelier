@@ -6,20 +6,30 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import net.minidev.json.annotate.JsonIgnore;
+
 @Entity
 public class TarifSaison {
 	@EmbeddedId
 	private TarifSaisonPK tarifSaisonPK;
 	private float prixFinal;
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne()
+	@JsonIgnoreProperties({"tarifSaisons","categories"} )
+	@JsonIgnore
 	@JoinColumn(name="tarif", referencedColumnName="id", insertable= false, updatable = false)
 	private Tarif tarif;
-	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name="saison", referencedColumnName="id", insertable= false, updatable = false)
+	@ManyToOne()
+	@JsonIgnoreProperties({"tarifSaisons"} )
+	@JsonIgnore
+	@JoinColumn(name="saison", referencedColumnName="id", insertable=false, updatable = false)
 	private Saison saison;
 
 	public TarifSaison() {
+		
 		super();
+		 
 	}
 
 	public TarifSaisonPK getTarifSaisonPK() {
@@ -48,7 +58,7 @@ public class TarifSaison {
 
 	public Saison getSaison() {
 		return saison;
-	}
+	} 
 
 	public void setSaison(Saison saison) {
 		this.saison = saison;

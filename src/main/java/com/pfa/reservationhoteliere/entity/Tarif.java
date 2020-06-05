@@ -23,6 +23,7 @@ public class Tarif {
 	@OneToMany(mappedBy = "tarif")
 	private List<Service> services;
 	@OneToMany(mappedBy = "tarif")
+	@JsonIgnore
 	private List<CategorieChambre> categories;
 	@OneToMany(mappedBy = "tarif")
 	@JsonIgnore
