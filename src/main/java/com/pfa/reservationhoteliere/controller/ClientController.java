@@ -26,9 +26,9 @@ public class ClientController {
 	public List<Client> findAll(){
 		return clientRepository.findAll();
 	}
-	@GetMapping("/{id}")
+	@GetMapping("/find/{id}")
 	public Client findClient(@PathVariable(required = true) String id){
-		return clientRepository.findById(Integer.parseInt(id));
+		return clientRepository.findById(Long.parseLong(id));
 	}
 	
 	@PostMapping("/save")

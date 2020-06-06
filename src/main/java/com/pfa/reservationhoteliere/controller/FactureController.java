@@ -18,7 +18,7 @@ import com.pfa.reservationhoteliere.repository.IFactureRepository;
 
 @RestController
 @RequestMapping("factures")
-@CrossOrigin(origins = "http://localhost:4200")  
+@CrossOrigin(origins = "http://localhost:4200")
 public class FactureController {
 	@Autowired
 	private IFactureRepository factureRepository;
@@ -28,6 +28,17 @@ public class FactureController {
 		return factureRepository.findAll();
 	}
 
+	@GetMapping("/find/{id}")
+	public Facture findFacture(@PathVariable(required = true) String id) {
+
+		return factureRepository.findById(Integer.parseInt(id));
+	}
+
+	@GetMapping("/client/{id}")
+	public Facture findFactureParClient(@PathVariable(required = true) String id) {
+
+		return factureRepository.findByClient(Long.parseLong(id));
+	}
 
 	@PostMapping(value = "/save")
 	public void save(@RequestBody final Facture facture) {
@@ -41,13 +52,19 @@ public class FactureController {
 		factureRepository.delete(facture);
 		factureRepository.flush();
 	}
+
 	@GetMapping(value = "/client/totalprix/{id}")
 	public double totalprixId(@PathVariable(required = true) String id) {
 		return factureRepository.totalpriceClient(Long.parseLong(id));
 	}
+
 	@GetMapping(value = "/totalprix/{id}")
 	public double totalprixfacture(@PathVariable(required = true) String id) {
 		return factureRepository.totalpriceFacture(Integer.parseInt(id));
 	}
-	
+	@GetMapping(value = "/totaldays/{id}")
+	public int totalDays(@PathVariable(required = true) String id) {
+		return factureRepository.Totaledays(Long.parseLong(id));
+	}
+
 }
