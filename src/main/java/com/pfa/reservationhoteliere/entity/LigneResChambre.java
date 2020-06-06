@@ -9,6 +9,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class LigneResChambre {
 	@EmbeddedId
@@ -19,9 +21,11 @@ public class LigneResChambre {
 	private Date dateSortie;
 	@ManyToOne
 	@JoinColumn(name="chambre", referencedColumnName="id", insertable= false, updatable = false)
+	@JsonIgnoreProperties({"ligneReschambres"})
 	private Chambre chambre;
 	@ManyToOne
 	@JoinColumn(name="reservation", referencedColumnName="id", insertable= false, updatable = false)
+	@JsonIgnoreProperties({"ligneReschambres"} )
 	private Reservation reservation;
 
 	public LigneResChambre() {

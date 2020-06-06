@@ -39,6 +39,7 @@ public class Chambre implements Serializable {
 	@JsonIgnoreProperties({"chambres"} )
 	private CategorieChambre categorieChambre;
 	@OneToMany(mappedBy = "chambre", fetch = FetchType.EAGER)
+	@JsonIgnoreProperties({"chambre"})
 	private List<LigneResChambre> ligneResChambres;
 
 	public Chambre() {

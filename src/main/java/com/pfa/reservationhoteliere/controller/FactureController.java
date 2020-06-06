@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pfa.reservationhoteliere.entity.Facture;
+import com.pfa.reservationhoteliere.entity.Facturedetaille;
 import com.pfa.reservationhoteliere.repository.IFactureRepository;
 
 @RestController
@@ -27,6 +28,7 @@ public class FactureController {
 		return factureRepository.findAll();
 	}
 
+
 	@PostMapping(value = "/save")
 	public void save(@RequestBody final Facture facture) {
 		factureRepository.save(facture);
@@ -39,10 +41,13 @@ public class FactureController {
 		factureRepository.delete(facture);
 		factureRepository.flush();
 	}
-
-	@GetMapping(value = "/count")
-	public long countSalle() {
-		return factureRepository.count();
+	@GetMapping(value = "/client/totalprix/{id}")
+	public double totalprixId(@PathVariable(required = true) String id) {
+		return factureRepository.totalpriceClient(Long.parseLong(id));
 	}
-
+	@GetMapping(value = "/totalprix/{id}")
+	public double totalprixfacture(@PathVariable(required = true) String id) {
+		return factureRepository.totalpriceFacture(Integer.parseInt(id));
+	}
+	
 }

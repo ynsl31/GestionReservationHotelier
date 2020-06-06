@@ -42,4 +42,9 @@ public class ReservationController {
 		return reservationRepository.count();
 	}
 
+	@GetMapping(value = "/totalprix/{id}")
+	public Double totalprixId(@PathVariable(required = true) String id) {
+		return reservationRepository.totalprice(Integer.parseInt(id));
+	}
+
 }

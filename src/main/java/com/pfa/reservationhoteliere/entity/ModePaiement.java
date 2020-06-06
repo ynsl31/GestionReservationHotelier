@@ -13,7 +13,7 @@ public class ModePaiement {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private int reference;
+	private String reference;
 	private String type;
 	@OneToMany(mappedBy = "modePaiement")
 	private List<Facture> factures;
@@ -22,7 +22,7 @@ public class ModePaiement {
 		super();
 	}
 
-	public ModePaiement(int reference, String type) {
+	public ModePaiement(String reference, String type) {
 		super();
 		this.reference = reference;
 		this.type = type;
@@ -36,11 +36,11 @@ public class ModePaiement {
 		this.id = id;
 	}
 
-	public int getReference() {
+	public String getReference() {
 		return reference;
 	}
 
-	public void setReference(int reference) {
+	public void setReference(String reference) {
 		this.reference = reference;
 	}
 

@@ -1,39 +1,38 @@
 package com.pfa.reservationhoteliere.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
-public class Facture  {
+public class Facture {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String reference;
-	private float total;
 	@Temporal(TemporalType.DATE)
 	private Date dateFacture;
 	@ManyToOne
+	@JsonIgnoreProperties({ "factures" })
 	private ModePaiement modePaiement;
-	@ManyToOne
-	private Reservation reservation;
+	@OneToMany(mappedBy = "facture")
+	@JsonIgnoreProperties({ "ligneResChambres" })
+	private List<Reservation> reservations;
+	
+	
+ 
 	public Facture() {
 		super();
-	}
-	public Facture(String reference, float total, Date dateFacture, ModePaiement modePaiement,
-			Reservation reservation) {
-		super();
-		this.reference = reference;
-		this.total = total;
-		this.dateFacture = dateFacture;
-		this.modePaiement = modePaiement;
-		this.reservation = reservation;
 	}
 
 	public int getId() {
@@ -52,14 +51,6 @@ public class Facture  {
 		this.reference = reference;
 	}
 
-	public float getTotal() {
-		return total;
-	}
-
-	public void setTotal(float total) {
-		this.total = total;
-	}
-
 	public Date getDateFacture() {
 		return dateFacture;
 	}
@@ -76,18 +67,18 @@ public class Facture  {
 		this.modePaiement = modePaiement;
 	}
 
-	public Reservation getReservation() {
-		return reservation;
+	public List<Reservation> getReservations() {
+		return reservations;
 	}
 
-	public void setReservation(Reservation reservation) {
-		this.reservation = reservation;
+	public void setReservations(List<Reservation> reservations) {
+		this.reservations = reservations;
 	}
 
 	@Override
 	public String toString() {
-		return "Facture [id=" + id + ", reference=" + reference + ", total=" + total + ", dateFacture=" + dateFacture
-				+ ", modePaiement=" + modePaiement + ", reservation=" + reservation + "]";
+		return "Facture [id=" + id + ", reference=" + reference + ", dateFacture=" + dateFacture + ", modePaiement="
+				+ modePaiement + ", reservations=" + reservations + "]";
 	}
 
 }
