@@ -1,10 +1,12 @@
 package com.pfa.reservationhoteliere.repository;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import com.pfa.reservationhoteliere.entity.Client;
 import com.pfa.reservationhoteliere.entity.Facture;
 import com.pfa.reservationhoteliere.entity.Regime;
 import com.pfa.reservationhoteliere.entity.Reservation;
@@ -31,5 +33,8 @@ public interface IFactureRepository extends JpaRepository<Facture, Integer> {
 	ArrayList<Object> GetfacturesC();
 	@Query("SELECT SUM( DATEDIFF(lr.dateSortie,lr.dateArrivee)) FROM Client c JOIN c.reservations r JOIN r.ligneReschambres lr JOIN lr.chambre ch JOIN ch.categorieChambre cc JOIN cc.tarif t WHERE c.id = ?1 Group by (c)")
 	int Totaledays(long id);
+	
+	@Query("SELECT c FROM Facture f JOIN f.reservations r JOIN r.client c ")
+	   List<Client> ClientsFacture();
 	
 }

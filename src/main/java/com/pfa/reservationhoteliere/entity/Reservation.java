@@ -30,12 +30,10 @@ public class Reservation implements Serializable {
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JsonIgnoreProperties({"reservations"} )
 	private Regime regime;
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JsonIgnoreProperties({"reservations , ligneResChambres"} )
-	@JsonIgnore
-	
 	private Facture facture;
-	@ManyToOne(cascade = CascadeType.MERGE)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JsonIgnoreProperties({"reservations"} )
 	private Client client;
 	@OneToMany(mappedBy = "reservation")

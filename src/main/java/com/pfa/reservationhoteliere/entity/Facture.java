@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -27,6 +28,7 @@ public class Facture {
 	private ModePaiement modePaiement;
 	@OneToMany(mappedBy = "facture")
 	@JsonIgnoreProperties({ "ligneResChambres" })
+	@JsonIgnore
 	private List<Reservation> reservations;
 	
 	

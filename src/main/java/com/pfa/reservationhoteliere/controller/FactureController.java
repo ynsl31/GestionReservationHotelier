@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pfa.reservationhoteliere.entity.Client;
 import com.pfa.reservationhoteliere.entity.Facture;
 import com.pfa.reservationhoteliere.entity.Facturedetaille;
 import com.pfa.reservationhoteliere.repository.IFactureRepository;
@@ -26,6 +27,10 @@ public class FactureController {
 	@GetMapping("/all")
 	public List<Facture> findAll() {
 		return factureRepository.findAll();
+	}
+	@GetMapping("/clients/all")
+	public List<Client> findClientsFacture() {
+		return factureRepository.ClientsFacture();
 	}
 
 	@GetMapping("/find/{id}")
