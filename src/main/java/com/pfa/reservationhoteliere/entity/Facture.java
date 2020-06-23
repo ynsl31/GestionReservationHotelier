@@ -24,11 +24,9 @@ public class Facture {
 	@Temporal(TemporalType.DATE)
 	private Date dateFacture;
 	@ManyToOne
-	@JsonIgnoreProperties({ "factures" })
+	@JsonIgnoreProperties({"factures" })
 	private ModePaiement modePaiement;
 	@OneToMany(mappedBy = "facture")
-	@JsonIgnoreProperties({ "ligneResChambres" })
-	@JsonIgnore
 	private List<Reservation> reservations;
 	
 	

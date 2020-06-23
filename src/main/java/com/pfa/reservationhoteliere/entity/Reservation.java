@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
+@JsonIgnoreProperties({"facture","ligneReschambres"})
 public class Reservation implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,11 +30,11 @@ public class Reservation implements Serializable {
 	private Date dateReservation;
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JsonIgnoreProperties({"reservations"} )
-	private Regime regime;
+	private Regime regime; 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JsonIgnoreProperties({"reservations , ligneResChambres"} )
 	private Facture facture;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JsonIgnoreProperties({"reservations"} )
 	private Client client;
 	@OneToMany(mappedBy = "reservation")

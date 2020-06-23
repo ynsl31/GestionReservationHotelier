@@ -33,6 +33,7 @@ public class LigneResChambreController {
 		return  ILigneResChambreRepository.findByLigneReservChambrePK(id);
 		
 	}
+	
 
 	@GetMapping("/all")
 	public List<LigneResChambre> findAll() {
