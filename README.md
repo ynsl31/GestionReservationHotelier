@@ -1,2 +1,2 @@
 # GestionReservationHotelier
-Projet fin d'annee
+Rest API using Spring boot + Mysql for hotel management
